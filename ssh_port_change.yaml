@@ -9,8 +9,8 @@
      line: '#Port 22'
     notify:
        - restart sshd
-handlers
+  handlers:
     - name: restart sshd
-      service: sshd
+      service: 
         name: sshd
         state: restarted
