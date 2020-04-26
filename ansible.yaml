@@ -1,0 +1,34 @@
+---
+- hosts: AnsibleA
+  become: true
+  tasks:
+    - name: ensure nginx is at the latest version
+      yum: name=nginx state=latest
+    - name: start nginx
+      service:
+          name: nginx
+          state: started
+
+---
+- hosts: AnsibleA
+  become: true
+  tasks:
+    - name: stop nginx
+      service:
+          name: nginx
+          state: stopped
+    - name: ensure nginx is not installed
+      yum: name=nginx state=absent
+
+---
+- hosts: AnsibleA
+  become: true
+  tasks:
+  - name: Install lldpad package
+    yum:
+      name: lldpad
+      state: latest
+  - name: check lldpad service status
+    service:
+      name: lldpad
+      state: started
